@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Resume Builder</title>
 </head>
 <body>
+<div class="container mt-5">
+    <div class="card p-4 shadow">
+        <h2 class="text-center text-primary">Resume Builder 🚀</h2>
 
-<h1>Hello Simran 👋</h1>
+        <form action="/submit" method="post" enctype="multipart/form-data">
+            <input class="form-control mb-2" type="text" name="name" placeholder="Enter Name">
+            <input class="form-control mb-2" type="text" name="education" placeholder="Education">
+            <input class="form-control mb-2" type="text" name="skills" placeholder="Skills">
+            <input class="form-control mb-2" type="text" name="experience" placeholder="Experience">
+            <input type="file" name="image" class="form-control mb-2">
 
-<h2>Create Resume</h2>
-
-<form action="/submit" method="post">
-    Name: <input type="text" name="name"><br><br>
-    Education: <input type="text" name="education"><br><br>
-    Skills: <input type="text" name="skills"><br><br>
-    Experience: <input type="text" name="experience"><br><br>
-
-    <button type="submit">Generate</button>
-</form>
-
+            <button class="btn btn-primary w-100">Generate Resume</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

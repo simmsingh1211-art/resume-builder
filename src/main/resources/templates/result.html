@@ -5,6 +5,25 @@
     <title>Title</title>
 </head>
 <body>
+<div class="container mt-5">
+    <div class="card p-4 shadow">
 
+        <p><b>Name:</b> <span th:text="${resume.name}"></span></p>
+        <p><b>Education:</b> <span th:text="${resume.education}"></span></p>
+        <p><b>Skills:</b> <span th:text="${resume.skills}"></span></p>
+        <p><b>Experience:</b> <span th:text="${resume.experience}"></span></p>
+        <input class="form-control mb-2" type="text" name="experience" placeholder="Experience">
+
+        <input type="file" class="form-control mb-2">
+
+        <a th:href="@{'/download'(name=${resume.name}, education=${resume.education}, skills=${resume.skills}, experience=${resume.experience})}"
+           class="btn btn-success w-100 mt-2">
+            Download PDF
+        </a>
+
+        <a href="/" class="btn btn-primary w-100 mt-2">Create Another</a>
+
+    </div>
+</div>
 </body>
 </html>
