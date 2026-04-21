@@ -11,13 +11,16 @@
         <h2 class="text-center text-primary">Resume Builder 🚀</h2>
 
         <form action="/submit" method="post" enctype="multipart/form-data">
-            <input class="form-control mb-2" type="text" name="name" placeholder="Enter Name">
-            <input class="form-control mb-2" type="text" name="education" placeholder="Education">
-            <input class="form-control mb-2" type="text" name="skills" placeholder="Skills">
-            <input class="form-control mb-2" type="text" name="experience" placeholder="Experience">
-            <input type="file" name="image" class="form-control mb-2">
 
-            <button class="btn btn-primary w-100">Generate Resume</button>
+            <input type="text" name="name" placeholder="Enter Name" required />
+            <input type="text" name="education" placeholder="Education" required />
+            <input type="text" name="skills" placeholder="Skills" required />
+            <input type="text" name="experience" placeholder="Experience" required />
+
+            <input type="file" name="image" />
+
+            <button type="submit">Generate Resume</button>
+
         </form>
     </div>
 </div>

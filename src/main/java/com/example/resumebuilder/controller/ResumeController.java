@@ -5,6 +5,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 public class ResumeController {
@@ -16,17 +22,31 @@ public class ResumeController {
     }
 
     @PostMapping("/submit")
-    public String submitForm(@ModelAttribute Resume resume,
-                             @RequestParam("image") org.springframework.web.multipart.MultipartFile file,
-                             Model model) throws Exception {
+    public String submitForm(
+            @RequestParam String name,
+            @RequestParam String education,
+            @RequestParam String skills,
+            @RequestParam String experience,
+            @RequestParam(value = "image", required = false) MultipartFile file,
+            Model model) throws Exception {
 
-        if (!file.isEmpty()) {
+        Resume resume = new Resume();
+        resume.setName(name);
+        resume.setEducation(education);
+        resume.setSkills(skills);
+        resume.setExperience(experience);
+
+        if (file != null && !file.isEmpty()) {
+            String uploadDir = System.getProperty("user.dir") + "/uploads/";
+            File dir = new File(uploadDir);
+
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
             String fileName = file.getOriginalFilename();
-
-            java.nio.file.Path path =
-                    java.nio.file.Paths.get("src/main/resources/static/" + fileName);
-
-            java.nio.file.Files.write(path, file.getBytes());
+            Path path = Paths.get(uploadDir + fileName);
+            Files.write(path, file.getBytes());
 
             resume.setImage(fileName);
         }
@@ -36,11 +56,12 @@ public class ResumeController {
     }
 
     @GetMapping("/download")
-    public void downloadPdf(HttpServletResponse response,
-                            @RequestParam String name,
-                            @RequestParam String education,
-                            @RequestParam String skills,
-                            @RequestParam String experience) throws Exception {
+    public void downloadPdf(
+            HttpServletResponse response,
+            @RequestParam String name,
+            @RequestParam String education,
+            @RequestParam String skills,
+            @RequestParam String experience) throws Exception {
 
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=resume.pdf");
