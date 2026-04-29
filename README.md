@@ -11,7 +11,7 @@
 - Resume generation
 - Image upload
 - PDF download
-- CI/CD using Jenkins
+- CI/CD using Jenkins,Docker,AWS EC2
 
 ## ⚙️ How to Run
 1. Clone repo
