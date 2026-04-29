@@ -16,4 +16,4 @@
 ## ⚙️ How to Run
 1. Clone repo
 2. Run using IntelliJ
-3. Open http://localhost:8081
+3. Open http://18.117.125.84:8081/
